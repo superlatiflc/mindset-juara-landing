@@ -1,6 +1,6 @@
 
-import { useState } from "react";
-import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { useState, useEffect } from "react";
+import { ChevronLeft, ChevronRight, Quote, Star } from "lucide-react";
 
 const testimonials = [
   {
@@ -53,7 +53,7 @@ const TestimonialSection = () => {
   };
 
   // Update displayed testimonials based on screen width
-  useState(() => {
+  useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 640) {
         setDisplayedTestimonials(1);
@@ -69,7 +69,16 @@ const TestimonialSection = () => {
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  });
+  }, []);
+
+  // Auto-advance testimonials - subtle movement captures attention
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextTestimonial();
+    }, 8000);
+    
+    return () => clearInterval(interval);
+  }, [activeIndex, displayedTestimonials]);
 
   // Calculate which testimonials to show
   const startIndex = activeIndex * displayedTestimonials;
@@ -81,6 +90,7 @@ const TestimonialSection = () => {
   return (
     <section id="testimonials" className="py-16 md:py-24 bg-gray-50">
       <div className="container mx-auto px-4 md:px-6">
+        {/* Social Proof - establish credibility through others' experiences */}
         <div className="text-center mb-12">
           <h2 className="text-2xl md:text-3xl font-bold mb-4 font-display">
             Testimonial
@@ -91,15 +101,21 @@ const TestimonialSection = () => {
           </p>
         </div>
 
+        {/* Storytelling Effect - real stories for emotional connection */}
         <div className="relative">
           <div className="flex gap-6 overflow-hidden">
             {visibleTestimonials.map((testimonial, index) => (
               <div 
                 key={startIndex + index}
-                className="bg-white rounded-xl p-6 shadow-md flex-1 min-w-0 border border-gray-100"
+                className="bg-white rounded-xl p-6 shadow-md flex-1 min-w-0 border border-gray-100 hover:shadow-lg transition-all duration-300"
               >
-                <div className="mb-4">
+                <div className="mb-4 flex justify-between">
                   <Quote className="w-8 h-8 text-primary/20" />
+                  <div className="flex">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <Star key={star} size={14} className="text-yellow-400 fill-yellow-400" />
+                    ))}
+                  </div>
                 </div>
                 <p className="text-gray-700 mb-6 line-clamp-5">
                   "{testimonial.quote}"
@@ -112,9 +128,10 @@ const TestimonialSection = () => {
             ))}
           </div>
 
+          {/* Fitt's Law - make navigation buttons easy to use */}
           <button 
             onClick={prevTestimonial}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 bg-white rounded-full p-2 shadow-md border border-gray-100 hover:bg-gray-50 transition-colors z-10"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 bg-white rounded-full p-2 shadow-md border border-gray-100 hover:bg-gray-50 hover:scale-110 transition-all z-10"
             aria-label="Previous testimonial"
           >
             <ChevronLeft className="w-5 h-5" />
@@ -122,20 +139,23 @@ const TestimonialSection = () => {
 
           <button 
             onClick={nextTestimonial}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 bg-white rounded-full p-2 shadow-md border border-gray-100 hover:bg-gray-50 transition-colors z-10"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 bg-white rounded-full p-2 shadow-md border border-gray-100 hover:bg-gray-50 hover:scale-110 transition-all z-10"
             aria-label="Next testimonial"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
         </div>
 
+        {/* Progress indicators - help users understand where they are */}
         <div className="flex justify-center mt-8">
           {Array.from({ length: Math.ceil(testimonials.length / displayedTestimonials) }).map((_, index) => (
             <button
               key={index}
               onClick={() => setActiveIndex(index)}
-              className={`w-3 h-3 rounded-full mx-1 ${
-                activeIndex === index ? 'bg-primary' : 'bg-gray-300'
+              className={`w-3 h-3 rounded-full mx-1 transition-all duration-300 ${
+                activeIndex === index 
+                  ? 'bg-primary w-6' 
+                  : 'bg-gray-300 hover:bg-gray-400'
               }`}
               aria-label={`Go to testimonial page ${index + 1}`}
             />
