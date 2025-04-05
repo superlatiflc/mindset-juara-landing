@@ -28,11 +28,13 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto flex items-center justify-between px-4 md:px-6">
-        <div className="flex items-center gap-1">
-          <span className="text-xl font-bold text-primary">SUPERLATIF</span>
-          <span className="text-xl">x</span>
-          <span className="text-xl font-bold text-secondary">PRIORITY</span>
-        </div>
+        <a href="/" className="flex items-center">
+          <img 
+            src="https://superlatif.id/wp-content/uploads/2025/02/LOGO-PRIORITY-X-SUPERLATIF.png" 
+            alt="SUPERLATIF x PRIORITY" 
+            className="h-10 md:h-12"
+          />
+        </a>
         
         <div className="hidden md:flex items-center gap-8">
           <a href="#program" className="text-sm font-medium hover:text-primary transition-colors">Program</a>
@@ -41,9 +43,11 @@ const Navbar = () => {
           <a href="#testimonials" className="text-sm font-medium hover:text-primary transition-colors">Testimonial</a>
         </div>
         
-        <Button size="sm" className="rounded-full">
-          <span>Daftar Sekarang</span>
-          <ArrowRight size={16} className="ml-2" />
+        <Button size="sm" className="rounded-full" asChild>
+          <a href="https://superlatif.id/product/kedinasan-intensif-2025/">
+            <span>Daftar Sekarang</span>
+            <ArrowRight size={16} className="ml-2" />
+          </a>
         </Button>
       </div>
     </nav>

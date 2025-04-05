@@ -1,3 +1,4 @@
+
 import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 
 const Footer = () => {
@@ -6,10 +7,12 @@ const Footer = () => {
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           <div>
-            <div className="flex items-center gap-1 mb-4">
-              <span className="text-xl font-bold text-white">SUPERLATIF</span>
-              <span className="text-xl text-gray-400">x</span>
-              <span className="text-xl font-bold text-blue-400">PRIORITY</span>
+            <div className="mb-4">
+              <img 
+                src="https://superlatif.id/wp-content/uploads/2025/02/LOGO-PRIORITY-X-SUPERLATIF.png" 
+                alt="SUPERLATIF x PRIORITY" 
+                className="h-10"
+              />
             </div>
             <p className="text-sm text-gray-400 mb-4">
               Kombinasi unik pengembangan mindset juara dan persiapan intensif oleh Alumni Grade A+

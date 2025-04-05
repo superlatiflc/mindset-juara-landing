@@ -73,9 +73,11 @@ const PricingSection = () => {
                 </div>
               </div>
               
-              <Button size="lg" className="mt-6 md:mt-0 rounded-full text-base w-full md:w-auto">
-                <Zap size={18} className="mr-2" />
-                DAFTAR SEKARANG
+              <Button size="lg" className="mt-6 md:mt-0 rounded-full text-base w-full md:w-auto" asChild>
+                <a href="https://superlatif.id/product/kedinasan-intensif-2025/">
+                  <Zap size={18} className="mr-2" />
+                  DAFTAR SEKARANG
+                </a>
               </Button>
             </div>
             

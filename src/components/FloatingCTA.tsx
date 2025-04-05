@@ -1,15 +1,14 @@
 
-import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, X } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { useState, useEffect } from "react";
 
 const FloatingCTA = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [isDismissed, setIsDismissed] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      // Show CTA when user has scrolled 60% of the page
+      // Show floating CTA after scrolling past 60% of the viewport height
       if (window.scrollY > window.innerHeight * 0.6) {
         setIsVisible(true);
       } else {
@@ -21,33 +20,28 @@ const FloatingCTA = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  if (isDismissed) return null;
-
   return (
-    <div 
-      className={`fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-full max-w-md px-4 transition-all duration-300 ${
-        isVisible ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
+    <div
+      className={`fixed bottom-4 left-0 right-0 z-50 transition-transform duration-300 ease-in-out ${
+        isVisible ? "translate-y-0" : "translate-y-full"
       }`}
     >
-      <div className="bg-white rounded-lg shadow-lg border border-gray-100 p-4 flex items-center justify-between">
-        <div>
-          <p className="font-semibold text-gray-900">Flash Sale Terbatas!</p>
-          <p className="text-sm text-gray-600">Hanya tersisa 53 kuota lagi</p>
-        </div>
-        
-        <div className="flex items-center gap-2">
-          <Button size="sm" className="rounded-full">
-            <span>Daftar</span>
-            <ArrowRight size={14} className="ml-1" />
+      <div className="container mx-auto px-4">
+        <div className="bg-white/95 backdrop-blur-md shadow-lg rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4 border border-gray-100">
+          <div className="flex-1 text-center sm:text-left">
+            <p className="text-sm font-medium">
+              Flash Sale Berakhir Segera! 🔥
+            </p>
+            <p className="text-xs text-gray-600">
+              Dapatkan harga spesial Rp 345.000
+            </p>
+          </div>
+          <Button size="sm" className="rounded-full w-full sm:w-auto" asChild>
+            <a href="https://superlatif.id/product/kedinasan-intensif-2025/">
+              <span>Daftar Sekarang</span>
+              <ArrowRight size={16} className="ml-2" />
+            </a>
           </Button>
-          
-          <button
-            onClick={() => setIsDismissed(true)}
-            className="text-gray-400 hover:text-gray-600"
-            aria-label="Close"
-          >
-            <X size={18} />
-          </button>
         </div>
       </div>
     </div>

@@ -26,9 +26,9 @@ export default {
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				primary: {
-					DEFAULT: '#FF5757', // Bright red for CTA
+					DEFAULT: '#44B351', // Green from Superlatif logo
 					foreground: '#FFFFFF',
-					light: '#FFE6E6',
+					light: '#E6F5E8',
 				},
 				secondary: {
 					DEFAULT: '#3B82F6', // Blue for secondary elements
